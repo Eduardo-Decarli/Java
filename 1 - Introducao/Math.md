@@ -22,8 +22,3 @@ double paraCima = Math.ceil(5.3);     // Arredonda para cima
 double paraBaixo = Math.floor(5.9);   // Arredonda para baixo
 double aleatorio = Math.random(); // Retorna um numero alteatório entre 0.0 e 1.0
 int aleatorioEntre1e10 = (int) (Math.random() * 10) + 1; // Aleatoriza um valor entre 1 e 10
-
-
-
-
-
