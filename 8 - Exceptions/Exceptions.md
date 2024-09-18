@@ -80,3 +80,35 @@ public void metodo() {
     throw new IllegalArgumentException("Argumento inválido");
 }
 
+```
+
+### Exemplo completo de Exceptions
+
+```java
+
+import java.io.*;
+
+public class ExemploException {
+    public static void main(String[] args) {
+        try {
+            lerArquivo("arquivo.txt");
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        } finally {
+            System.out.println("Operação concluída.");
+        }
+    }
+
+    public static void lerArquivo(String nomeArquivo) throws IOException {
+        if (nomeArquivo == null) {
+            throw new IllegalArgumentException("O nome do arquivo não pode ser nulo");
+        }
+        // Simulando uma operação que pode lançar IOException
+        FileReader arquivo = new FileReader(nomeArquivo);
+        BufferedReader leitor = new BufferedReader(arquivo);
+        System.out.println(leitor.readLine());
+        leitor.close();
+    }
+}
+
+
