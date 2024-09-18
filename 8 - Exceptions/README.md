@@ -62,7 +62,7 @@ try {
 
 ## throws
 
-O uso da palavra-chave throws em um método indica que esse método pode lançar uma exceção, mas não a trata diretamente. Em vez disso, delega a responsabilidade para o método chamador.
+O uso da palavra-chave throws em um método indica que esse método pode lançar uma exceção, mas não a trata diretamente. Em vez disso, delega a responsabilidade para o método chamado.
 
 ```java
 
