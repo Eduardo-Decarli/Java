@@ -56,7 +56,7 @@ public class Client {
             try {
                 //Função que pula uma linha antes de escrever o usuario
                 fw = new FileWriter(createClientFile, true);
-                fw.write(this.nome + "," + this.password + "," + this.cpf);
+                fw.write("\n" + this.nome + "," + this.password + "," + this.cpf);
             }
             catch(IOException x){
                 throw new ClientExceptions("Houve um erro ao cadastrar o cliente: " + x.getMessage());

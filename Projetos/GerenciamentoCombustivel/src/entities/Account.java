@@ -2,12 +2,12 @@ package entities;
 
 public abstract class Account {
     private Integer idAccount;
-    private double balance;
+    private double balance = 0;
 
     public Account() {
     }
 
-    public Account(Integer idAccount, double balance) {
+    public Account(Integer idAccount) {
         this.idAccount = idAccount;
         this.balance = balance;
     }
@@ -22,10 +22,6 @@ public abstract class Account {
 
     public double getBalance() {
         return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 
     public abstract void deposit();
