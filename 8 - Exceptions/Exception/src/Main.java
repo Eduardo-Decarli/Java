@@ -16,5 +16,9 @@ public class Main {
         } catch (CustomException e) {
             System.err.println("Erro customizado: " + e.getMessage());
         }
+        int i = 1;
+        for(; i<5; i++){
+
+        }
     }
 }
