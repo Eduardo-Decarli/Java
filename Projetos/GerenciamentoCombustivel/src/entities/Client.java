@@ -54,6 +54,7 @@ public class Client {
         if(createClientFile.canWrite()){
             FileWriter fw = null;
             try {
+                //Função que pula uma linha antes de escrever o usuario
                 fw = new FileWriter(createClientFile, true);
                 fw.write(this.nome + "," + this.password + "," + this.cpf);
             }
@@ -80,7 +81,7 @@ public class Client {
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 String[] contentLine = line.split(",");
-                if (contentLine[0] == name && contentLine[1] == password) {
+                if (contentLine[0].equals(name) && contentLine[1].equals(password)) {
                     return new Client(contentLine[0], Integer.parseInt(contentLine[2]), contentLine[1]);
                 }
             }
