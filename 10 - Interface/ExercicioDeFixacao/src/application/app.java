@@ -3,6 +3,7 @@ package application;
 import entities.Contract;
 import entities.Installment;
 import services.ContractService;
+import services.PaypalService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,14 +31,12 @@ public class app {
         System.out.println("Entre com as parcelas: ");
         int quantInstallment = sc.nextInt();
 
-        ContractService cs = new ContractService(null);
+        ContractService cs = new ContractService(new PaypalService());
         cs.processContract(contract, quantInstallment);
 
         System.out.println("PARCELAS");
         for(Installment installment : contract.getInstallments()){
             System.out.println(installment);
         }
-
-
     }
 }
