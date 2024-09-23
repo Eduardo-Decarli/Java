@@ -1,6 +1,7 @@
 package model.services;
 
-public class BrazilTaxService {
+//Aqui implementamos a interface TaxService, forçando o código a implementar a funcionalidade tax()
+public class BrazilTaxService implements TaxService{
     public double tax(double amount){
         if(amount <= 100.0){
             return amount * 0.2;

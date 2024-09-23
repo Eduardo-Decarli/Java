@@ -33,14 +33,16 @@ public class app {
         System.out.print("Entre com o preço por dia: ");
         double pricePerDay = sc.nextDouble();
 
+        //Embora o construtor RentalService declara que será um TaxService, o uso do BrazilTaxService é perfeitamente usado
+        //Pois será feito o upcasting de BrazilTaxService para a interface TaxService dentro da classe RentalService
         RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
 
         rentalService.processInvoice(cr);
 
         System.out.println("FATURA");
-        System.out.println("Pagamento basico: " + cr.getInvoice().getBasicPayment());
+        System.out.println("Pagamento basico: " + String.format("%.2f", cr.getInvoice().getBasicPayment()));
         System.out.println("Imposto: " + cr.getInvoice().getTax());
-        System.out.println("Pagamento Total: " + cr.getInvoice().getTotalPayment());
+        System.out.println("Pagamento Total: " + String.format("%.2f", cr.getInvoice().getTotalPayment()));
 
 
         sc.close();
