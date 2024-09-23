@@ -47,6 +47,8 @@ public class App {
         controllerArrive = sc.nextInt();
 
         if(controllerArrive == 1){
+            System.out.println("Conta corrente ou Conta poupança?");
+
             System.out.println("Digite o id da conta");
             int idAccount = sc.nextInt();
         }
