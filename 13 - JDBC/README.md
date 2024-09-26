@@ -35,9 +35,23 @@ Depois de estabelecer a conexão, você pode preparar e executar consultas SQL. 
 
 ### Usando o Statement
 
-```java
+``` java
 
 Statement stmt = conexao.createStatement();
 ResultSet rs = stmt.executeQuery("SELECT * FROM clientes");
+
+```
+
+### Usando o PreparedStatement
+
+Usar PreparedStatement é mais seguro contra ataques de injeção de SQL.
+
+``` java
+
+String query = "INSERT INTO clientes (nome, idade) VALUES (?, ?)";
+PreparedStatement pstmt = conexao.prepareStatement(query);
+pstmt.setString(1, "João");
+pstmt.setInt(2, 25);
+pstmt.executeUpdate();
 
 ```
