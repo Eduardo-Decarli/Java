@@ -10,3 +10,34 @@ JDBC (Java Database Connectivity) é uma API (Application Programming Interface)
 - Execução de consultas SQL: Permite que você envie comandos SQL para o banco de dados, como SELECT, INSERT, UPDATE e DELETE.
 - Processamento de resultados: Recupera e manipula os dados retornados pelas consultas SQL.
 - Gerenciamento de transações: Controla operações de transação (commit, rollback) para garantir a integridade dos dados.
+
+## Estabelecendo Conexão com o DB
+
+Para conectar-se a um banco de dados, você precisa de uma URL de conexão, nome de usuário e senha. A URL geralmente segue este formato: jdbc:<tipo_do_banco>://<host>:<porta>/<nome_do_banco>
+
+Exemplo 
+
+``` java
+
+String url = "jdbc:mysql://localhost:3306/meu_banco";
+String user = "root";
+String password = "minha_senha";
+
+Connection conexao = DriverManager.getConnection(url, user, password);
+
+```
+Aqui, o método DriverManager.getConnection() cria a conexão com o banco de dados.
+
+
+## Fazendo Consultas Simples
+
+Depois de estabelecer a conexão, você pode preparar e executar consultas SQL. Existem duas formas principais de fazer isso:
+
+### Usando o Statement
+
+```java
+
+Statement stmt = conexao.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM clientes");
+
+```
