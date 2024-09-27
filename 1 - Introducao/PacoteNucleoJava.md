@@ -30,7 +30,53 @@ Essas classes são essenciais para a maioria dos programas Java, pois oferecem f
 
 Nesse pacote, possui classes e interfaces que ajudam a trabalhar com grupos e listas de objetos (coleções) e oferecem diversas operações, como adição, remoção e busca de elementos, as classes e interfaces são: 
 
+#### Classes Principais do java.util
+
 - List: Interface que representa uma lista de elementos, onde a ordem de inserção é mantida. Implementações comuns:
 
-ArrayList: Lista baseada em array, muito eficiente para acessos rápidos.
-LinkedList: Lista encadeada, melhor para operações de inserção e remoção.
+    - ArrayList: Lista baseada em array, muito eficiente para acessos rápidos.
+    - LinkedList: Lista encadeada, melhor para operações de inserção e remoção.
+
+- Set: Interface que representa um conjunto de elementos, sem duplicatas. Implementações comuns:
+    - HashSet: Conjunto que não garante a ordem dos elementos.
+    - TreeSet: Conjunto ordenado, baseado na ordenação natural ou em um comparador.
+
+- Map: Interface que mapeia chaves a valores. Implementações comuns:
+
+    - HashMap: Estrutura de mapa baseada em tabela de dispersão (hash), que permite busca rápida de elementos pela chave.
+    - TreeMap: Mapa ordenado, com as chaves dispostas em ordem crescente ou de acordo com um comparador
+
+- Queue: Interface que representa uma fila de elementos, seguindo a regra FIFO (First-In-First-Out). Implementação comum:
+    - PriorityQueue: Fila de prioridade que ordena os elementos conforme sua prioridade.
+
+### java.io
+
+O pacote java.io fornece classes para realizar operações de entrada e saída (I/O) em Java. Ele é utilizado para ler e escrever dados de diferentes fontes, como arquivos, fluxos de dados (streams), e dispositivos externos. A abordagem principal do pacote é baseada no conceito de streams, que abstraem a entrada e saída de dados como uma sequência contínua de bytes ou caracteres. Ele possui as classes:
+
+#### Classes Principais do java.io
+
+- File: Representa um arquivo ou diretório no sistema de arquivos. Você pode usá-la para verificar se um arquivo ou diretório existe, criar, renomear ou deletar arquivos, e obter informações como o tamanho ou permissões.
+
+- FileReader: Usado para ler dados de arquivos de texto, convertendo diretamente bytes em caracteres de forma eficiente
+
+- FileWriter: Usado para gravar caracteres em um arquivo de texto
+
+- BufferedReader: Lê texto de um arquivo de maneira eficiente, armazenando em buffer. Isso melhora o desempenho na leitura de grandes volumes de textos. 
+
+- BufferedWriter: Ele escreve textos em um arquivo de maneira eficiente, armazenando em buffer os dados antes de gravar.
+
+#### Interfaces principais do java.io
+
+- Serializable: Marca uma classe como serializavel, ou seja, indica que o objeto dessa classe pode ser convertido em uma sequencia de bytes e restaurados(desserializados). É uma interface de marcação, ou seja, uma interface vazia.
+
+### java.net
+
+O pacote java.net é utilizado para operações de rede em Java, permitindo que você crie programas que se comuniquem via protocolos de rede, como TCP/IP e HTTP. Ele oferece classes e interfaces para implementar clientes e servidores de rede, além de manipular endereços de rede e URLs.
+
+#### Classes Principais do java.io
+
+- url: Representa um endereço da **Web**, Com essa classe, pode-se acessar recursos pela internet ou rede local, como arquivos ou páginas da web.
+
+- URLConnection: Representa uma conexão com o recurso especificado por uma **URL**, Permite ler e gravar dados de/para um servidor. É uma classe pai da classe HttpURLConnection, que é usada para comunicações HTTP. Essa classe também é usada para operações como enviar dados POST e GET para servidores web.
+
+- HttpURLConnection: Extenção da URLConnection, suporta métodos HTTP como GET, POST, PUT, DELETE, entre outros. Possui métodos para definir o tipo da requisição e para obter o código de respostas HTTP.
