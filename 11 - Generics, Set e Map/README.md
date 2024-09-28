@@ -2,7 +2,7 @@
 
 ## O que é o Generics?
 
-Generics é um recurso que permite que classes, interfaces e métodos operem em tipos de dados especificados como parâmetros, aumentando a flexibilidade e a reutilização do código. Com Generics, você pode escrever código que é mais seguro em relação a tipos, pois as verificações de tipo são feitas em tempo de compilação, em vez de tempo de execução.
+Generics em Java permitem que você crie classes, interfaces e métodos que funcionam com tipos de dados específicos, mas de forma flexível. Ou seja, em vez de definir o tipo exato que uma classe ou método irá manipular (como int, String, etc.), você pode definir um "tipo genérico" e deixar que o tipo seja definido quando você realmente for usar a classe ou método.
 
 # Como utilizar classes implementadas com o Generics?
 
