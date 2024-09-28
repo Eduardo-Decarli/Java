@@ -71,7 +71,7 @@ O pacote java.io fornece classes para realizar operações de entrada e saída (
 
 O pacote java.net é utilizado para operações de rede em Java, permitindo que você crie programas que se comuniquem via protocolos de rede, como TCP/IP e HTTP. Ele oferece classes e interfaces para implementar clientes e servidores de rede, além de manipular endereços de rede e URLs.
 
-### Classes Principais do java.io
+### Classes Principais do java.net
 
 - url: Representa um endereço da **Web**, Com essa classe, pode-se acessar recursos pela internet ou rede local, como arquivos ou páginas da web.
 
@@ -83,7 +83,7 @@ O pacote java.net é utilizado para operações de rede em Java, permitindo que 
 
 O pacote java.sql faz parte da API JDBC (Java Database Connectivity) e fornece classes e interfaces que permitem que programas Java se conectem a bancos de dados, enviem consultas SQL, recuperem dados e manipulem informações. Esse pacote é crucial para a integração de aplicações Java com bancos de dados relacionais.
 
-### Interfaces principais do java.io
+### Interfaces principais do java.sql
 
 - Connection: Representa uma conexão com um banco de dados. Ela é usada para estabelecer e gerenciar a comunicação entre a aplicação Java e o banco de dados.
 
@@ -96,3 +96,27 @@ O pacote java.sql faz parte da API JDBC (Java Database Connectivity) e fornece c
 - DriverManager: Gerencia os drivers JDBC disponíveis e facilita a criação de conexões com o banco de dados.
 
 - SQLException: Representa exceções relacionadas a erros de banco de dados. É lançada em várias operações JDBC para indicar problemas como falha de conexão, consulta malformada, etc.
+
+## java.time
+
+O pacote java.time foi introduzido no Java 8 para substituir as classes de manipulação de datas e horas das versões anteriores, oferecendo uma API mais moderna e amigável. Ele segue conceitos inspirados pela biblioteca Joda-Time e permite o uso de classes imutáveis e thread-safe para trabalhar com datas, horários e períodos.
+
+### Classes Principais do java.time
+
+- LocalDate: Representa uma data (dia, mês e ano) sem informações de horário ou fuso horário. É útil quando você deseja trabalhar com datas sem se preocupar com o tempo exato.
+
+- LocalTime: Representa apenas um horário (hora, minuto, segundo e nanossegundo), sem qualquer informação de data ou fuso horário
+
+- LocalDateTime: Combina LocalDate e LocalTime, representando uma data e um horário sem informações de fuso horário.
+
+- ZonedDateTime: Representa uma data e horário com informações de fuso horário (timezone). É útil quando você precisa lidar com eventos em diferentes regiões do mundo.
+
+- Duration: Representa uma duração de tempo em horas, minutos, segundos e nanossegundos. É útil para medir intervalos de tempo.
+
+- Instant: Representa um instante específico no tempo, contido como o número de segundos (ou nanossegundos) desde o Epoch (1970-01-01T00:00:00Z). Ele é útil para marcações temporais (timestamps).
+
+### Interfaces principais do java.time
+
+- Temporal: Interface básica para objetos que possuem uma dimensão temporal, como LocalDate, LocalTime e ZonedDateTime. Ela define métodos para manipulação de valores temporais.
+
+- ChronoUnit: Enumeração que define unidades de tempo, como ChronoUnit.DAYS, ChronoUnit.MONTHS, ChronoUnit.YEARS. É usada para calcular ou medir o tempo entre objetos temporais.
