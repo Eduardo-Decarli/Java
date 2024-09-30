@@ -11,6 +11,7 @@ A classe `Math` em Java faz parte do pacote `java.lang` e fornece métodos para 
 ### Exemplo de uso:
 
 ```java
+
 double resultado = Math.sqrt(25); // Calcula a raiz quadrada de 25
 System.out.println(Math.PI); // Retorna o PI 3.141592653589793
 double potencia = Math.pow(2, 3); // Retoran a potencia entre 2 elevado a 3
@@ -22,3 +23,5 @@ double paraCima = Math.ceil(5.3);     // Arredonda para cima
 double paraBaixo = Math.floor(5.9);   // Arredonda para baixo
 double aleatorio = Math.random(); // Retorna um numero alteatório entre 0.0 e 1.0
 int aleatorioEntre1e10 = (int) (Math.random() * 10) + 1; // Aleatoriza um valor entre 1 e 10
+
+```
