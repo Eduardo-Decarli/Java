@@ -34,31 +34,6 @@ public class Produto {
     private String nome;
     private Double preco;
 
-    // Getters e Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
 }
 
 ```
@@ -69,19 +44,19 @@ public class Produto {
 
 - @Id marca o campo id como a chave primária da entidade.
 
-## Mapeamento Objeto-Relacional
+## Marcações JPA
 
-O mapeamento objeto-relacional (ORM) é o coração do JPA. Ele define como as classes Java são mapeadas para tabelas de banco de dados e como seus atributos correspondem às colunas. Aqui estão os principais conceitos e anotações que você deve conhecer:
+- @Entity: Marca a classe como uma entidade JPA, mapeando ela como tabela no banco de dados.
 
-- @Entity: Marca a classe como uma entidade JPA.
-
-- @Table: Define a tabela como a entidade que representa. Se não for especificada, a tablema terá o nome da classe.
+- @Table: Define a tabela como a entidade que representa. Se não for especificada, a tabela terá o nome da classe.
 
 - @Id: Define a chave primária da tabela.
 
-- @GeneratedValue: Configura a geração automática do valor da chave primária, pode receber os atributos: **AUTO, IDENTITY, SEQUENCE ou TABLE**.
+- @GeneratedValue: Especifica como o valor da chave primária será gerado, pode receber os atributos: **AUTO, IDENTITY, SEQUENCE ou TABLE**.
 
 - @Column: Especifica o mapeamento de um campo para uma coluna. Pode definir o nome da coluna, a nulabilidade, o comprimento máximo, entre outros.
+
+- @OneToMany, @ManyToOne, @OneToOne, @ManyToMany: Mapemanto de relações entre as entidades.
 
 ### Exemplo
 
@@ -104,8 +79,21 @@ public class Cliente {
 
 ```
 
-### Relacionamento entre Entidades
+### Configurando o JPA
 
-No JPA, é possível modelar os relacionamentos entre tabelas usando as seguintes anotações:
+Para utilizar o JPA, você deve configurar o persistence.xml, onde é definida a unidade de persistência.
 
-- @OneToOne: Define um relacionamento um-para-um entre duas entidades
+``` XML
+
+<persistence-unit name="MyPU">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <properties>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/meubanco"/>
+        <property name="javax.persistence.jdbc.user" value="root"/>
+        <property name="javax.persistence.jdbc.password" value="senha"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+</persistence-unit>
+
+
+```
