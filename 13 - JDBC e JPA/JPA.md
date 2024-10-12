@@ -1,5 +1,13 @@
 # JPA
 
+## Indice
+
+[O que é JPA](#O-que-é-o-JPA)
+[Fundamentos](#fundamentos-do-jpa)
+[Arquitetura](#arquitetura-básica)
+[Principais Marcadores](#marcações-jpa)
+[Configurando o JPA](#configurando-o-jpa)
+
 ## O que é o JPA
 
 O JPA (Java Persistence API) é uma especificação da Java EE (Enterprise Edition) para o **mapeamento objeto-relacional (ORM)**. Ele facilita o trabalho com bancos de dados relacionais, permitindo que você manipule dados em um banco de dados usando objetos Java em vez de consultas SQL diretas.
@@ -211,7 +219,11 @@ public class Book {
 
 ## Configurando o JPA
 
-Para utilizar o JPA, você deve configurar um arquivo chamado persistence.xml, onde é definida a unidade de persistência.
+Para utilizar o JPA, o processo envolve basicamente três passos principais: **adicionar as dependências necessárias, configurar o arquivo de persistência e preparar as entidades**.
+
+### Adicionar as Dependências
+
+Se estiver utilizando Maven, adicione a dependência do JPA e do provedor (como Hibernate) no arquivo pom.xml
 
 ``` XML
 
@@ -227,9 +239,43 @@ Para utilizar o JPA, você deve configurar um arquivo chamado persistence.xml, o
 
 ```
 
-## Entidades e Mapeamentos Objeto-Relacional
+### Configurar o Arquivo
 
-As entidades JPA são simples classes Java que representam uma tabela no banco de dados.
+Você precisará criar um arquivo persistence.xml dentro da pasta META-INF para configurar as propriedades da persistência. Este arquivo define a unidade de persistência, que indica o banco de dados e as entidades gerenciadas pelo JPA.
+
+``` XML
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             version="3.0">
+    <persistence-unit name="library-persistence-unit">
+        <!-- Configuração do provedor -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entidades que o JPA irá gerenciar -->
+        <class>com.example.model.Book</class>
+        <class>com.example.model.Member</class>
+        <!-- Adicione todas as classes de entidade aqui -->
+
+        <!-- Propriedades de conexão com o banco de dados -->
+        <properties>
+            <!-- URL do banco de dados -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/library_db"/>
+            <!-- Usuário e senha do banco de dados -->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="password"/>
+            <!-- Driver JDBC -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            
+            <!-- Propriedades específicas do Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- "update", "validate", "create", etc. -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+```
 
 ## Consultas com JPQL (Java Persistence Query Language)
 
@@ -258,7 +304,98 @@ O JPA tem estados especificos para as entidades
 
 ## Operações CRUD no JPA
 
-## Relacionamentos entre Entidades
+### Create
+
+Para inserir um novo registro no banco de dados, utilizamos o método persist do EntityManager.
+
+``` java
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
+public class BookDao {
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library-persistence-unit");
+
+    public void createBook(Book book) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin(); // Inicia a transação
+        
+        entityManager.persist(book); // Persiste a nova entidade (Create)
+        
+        entityManager.getTransaction().commit(); // Confirma a transação
+        entityManager.close(); // Fecha o EntityManager
+    }
+}
+
+
+```
+
+### Read
+
+Para buscar dados no banco de dados, usamos o método find para buscar por chave primária ou a API de consultas do JPA (JPQL).
+
+``` java
+
+public Book findBookById(Long id) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    Book book = entityManager.find(Book.class, id); // Busca um livro pelo ID
+    entityManager.close();
+    return book;
+}
+
+```
+
+### Update
+
+Para atualizar um registro, usamos o método merge. O JPA atualiza uma entidade gerenciada pelo EntityManager, então, caso a entidade esteja fora do contexto de persistência (não gerenciada), usamos merge para trazê-la de volta ao estado gerenciado.
+
+``` java
+
+public void updateBook(Book book) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    
+    entityManager.merge(book); // Atualiza a entidade (Update)
+    
+    entityManager.getTransaction().commit();
+    entityManager.close();
+}
+
+```
+
+### Delete
+
+Para remover um registro do banco de dados, usamos o método **remove** do **EntityManager**, primeiro, você precisa buscar a entidade que deseja remover e, em seguida, chamar o método **remove**.
+
+``` java
+
+public void deleteBook(Long id) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    
+    Book book = entityManager.find(Book.class, id); // Busca a entidade a ser deletada
+    if (book != null) {
+        entityManager.remove(book); // Remove a entidade
+    }
+    
+    entityManager.getTransaction().commit();
+    entityManager.close();
+}
+
+```
+
+### Gerenciamento do EntityManager
+
+O EntityManager é o ponto central das operações de persistência, e ele gerencia o ciclo de vida das entidades. Cada operação de escrita (inserção, atualização, remoção) deve ser realizada dentro de uma transação.
+
+#### Boas práticas para gerenciar o EntityManager:
+
+- Sempre inicie uma transação com entityManager.getTransaction().begin() antes de operações de escrita.
+
+- Sempre finalize a transação com commit ou rollback, dependendo do sucesso ou falha da operação.
+
+- Lembre-se de fechar o EntityManager depois que as operações forem concluídas para liberar recursos.
 
 ## Henraça no JPA
 
