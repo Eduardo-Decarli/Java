@@ -2,11 +2,12 @@
 
 ## Indice
 
-[O que é JPA](#O-que-é-o-JPA)
-[Fundamentos](#fundamentos-do-jpa)
-[Arquitetura](#arquitetura-básica)
-[Principais Marcadores](#marcações-jpa)
-[Configurando o JPA](#configurando-o-jpa)
+[O que é JPA](#O-que-é-o-JPA)<br>
+[Fundamentos](#fundamentos-do-jpa)<br>
+[Arquitetura](#arquitetura-básica)<br>
+[Principais Marcadores](#marcações-jpa)<br>
+[Configurando o JPA](#configurando-o-jpa)<br>
+[CRUD](#operações-crud-no-jpa)
 
 ## O que é o JPA
 
