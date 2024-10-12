@@ -69,6 +69,8 @@ em.close(); // Fechamento do EntityManager
 
 ## Marcações JPA
 
+As marcações no JPA (anotações) são usadas para definir como as classes Java e seus atributos são mapeados para tabelas e colunas no banco de dados, além de configurar o comportamento das entidades.
+
 - @Entity: Marca a classe como uma entidade JPA, mapeando ela como tabela no banco de dados.
 
 - @Table: Define a tabela como a entidade que representa. Se não for especificada, a tabela terá o nome da classe.
@@ -79,7 +81,97 @@ em.close(); // Fechamento do EntityManager
 
 - @Column: Especifica o mapeamento de um campo para uma coluna. Pode definir o nome da coluna, a nulabilidade, o comprimento máximo, entre outros.
 
-- @OneToMany, @ManyToOne, @OneToOne, @ManyToMany: Mapemanto de relações entre as entidades.
+``` java
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "book_title", nullable = false, length = 100)
+    private String title;
+
+    @Column(name = "book_author")
+    private String author;
+}
+
+```
+
+- @OneToOne: Define um relacionamento de um para um entre duas entidades. Um exemplo clássico é um relacionamento entre Person e Passport, onde cada pessoa tem um passaporte único.
+
+``` java
+
+@Entity
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @OneToOne
+    @JoinColumn(name = "passport_id")
+    private Passport passport;
+}
+
+```
+
+- @OneToMany: Usada para definir um relacionamento de um para muitos. Esse é o caso quando uma entidade é associada a várias instâncias de outra entidade. Por exemplo, um autor pode ter vários livros.
+
+``` java
+
+@Entity
+public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
+}
+
+```
+
+- @ManyToOne: Define um relacionamento de muitos para um, como o lado inverso de @OneToMany. Cada livro tem um único autor, mas um autor pode ter muitos livros.
+
+``` java
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
+}
+
+
+```
+
+- @ManyToMany: 
+
+Define um relacionamento de muitos para muitos entre duas entidades. Por exemplo, um livro pode ter muitos autores, e um autor pode ter escrito muitos livros. Nesses casos, geralmente é usada uma tabela associativa (join table).
+
+``` java
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "author_book",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
+}
+
+
+```
 
 ### Exemplo
 
