@@ -62,22 +62,38 @@ try {
 
 ## throws
 
-O uso da palavra-chave throws em um método indica que esse método pode lançar uma exceção, mas não a trata diretamente. Em vez disso, delega a responsabilidade para o método chamado.
+A palavra-chave throws em um método indica que o método pode lançar uma ou mais exceções, mas não as trata diretamente. Em vez disso, ele "avisa" que o método pode lançar uma exceção, e quem chamar esse método será responsável por tratar a exceção.
 
 ```java
 
-public void metodo() throws IOException {
-    // Código que pode lançar uma IOException
-}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-```
+public class FileReaderExample {
 
-A palavra-chave throw é usada para lançar uma exceção explicitamente.
+    // O método readFile "avisa" que pode lançar uma IOException, mas não trata essa exceção aqui.
+    public void readFile(String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
 
-```java
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        reader.close();
+    }
 
-public void metodo() {
-    throw new IllegalArgumentException("Argumento inválido");
+    public static void main(String[] args) {
+        FileReaderExample example = new FileReaderExample();
+        String filePath = "example.txt"; // Caminho para o arquivo
+
+        // Aqui, o main é responsável por tratar a exceção lançada pelo método readFile
+        try {
+            example.readFile(filePath);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        }
+    }
 }
 
 ```
@@ -86,29 +102,34 @@ public void metodo() {
 
 ```java
 
-import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class ExemploException {
+public class NumberInputExample {
+
     public static void main(String[] args) {
-        try {
-            lerArquivo("arquivo.txt");
-        } catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
-        } finally {
-            System.out.println("Operação concluída.");
-        }
-    }
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+        int number = 0;
 
-    public static void lerArquivo(String nomeArquivo) throws IOException {
-        if (nomeArquivo == null) {
-            throw new IllegalArgumentException("O nome do arquivo não pode ser nulo");
+        // Continuar pedindo um número até que o usuário insira um valor válido
+        while (!validInput) {
+            try {
+                System.out.print("Please enter a number: ");
+                number = scanner.nextInt();  // Tenta ler um número inteiro
+                validInput = true;  // Se chegou até aqui, a entrada foi válida
+            } catch (InputMismatchException e) {
+                // Trata a exceção caso o usuário digite algo que não seja um número
+                System.out.println("That's not a valid number. Please try again.");
+                scanner.next();  // Limpa a entrada inválida
+            }
         }
-        // Simulando uma operação que pode lançar IOException
-        FileReader arquivo = new FileReader(nomeArquivo);
-        BufferedReader leitor = new BufferedReader(arquivo);
-        System.out.println(leitor.readLine());
-        leitor.close();
+
+        System.out.println("You entered the number: " + number);
+        scanner.close();
     }
 }
+
+```
 
 

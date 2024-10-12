@@ -64,7 +64,7 @@ Em Java, existem três tipos principais de escopo para variáveis:
 
 As variáveis declaradas dentro de uma classe, mas fora de qualquer método, são chamadas de **variáveis de instância** ou **variáveis de classe** (se forem `static`).
 
-### a) Variáveis de Instância
+### a Variáveis de Instância
 
 - **Escopo:** Acessível em toda a classe, exceto em métodos estáticos.
 - **Ciclo de Vida:** Existente enquanto o objeto da classe estiver ativo.
