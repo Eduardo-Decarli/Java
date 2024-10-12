@@ -170,26 +170,41 @@ public class Book {
     private List<Author> authors;
 }
 
-
 ```
 
-### Exemplo
+- @JoinColumn: É usada para especificar a coluna que será utilizada para unir duas entidades relacionadas. Ela define a coluna de chave estrangeira.
 
 ``` java
 
 @Entity
-@Table(name = "clientes")
-public class Cliente {
-
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+}
 
-    @Column(name = "nome_completo", nullable = false, length = 100)
-    private String nome;
+```
 
-    @Column(unique = true)
-    private String email;
+- @Embedded e @Embeddable: A anotação @Embedded é usada quando você deseja incorporar uma classe dentro de uma entidade, mas sem criar uma tabela separada. A classe incorporada deve ser anotada com @Embeddable.
+
+- @Transient: Indica que um campo não deve ser persistido no banco de dados. Ele será ignorado pelo JPA.
+
+- @Lob: Essa anotação é usada para mapear tipos de dados grandes, como blobs (binários) ou clobs (textos longos).
+
+``` java
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Lob
+    private String description;  // Texto grande armazenado como CLOB
 }
 
 ```
