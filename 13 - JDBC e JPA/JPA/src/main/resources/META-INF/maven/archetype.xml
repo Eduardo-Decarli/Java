@@ -1,0 +1,9 @@
+<archetype>
+  <id>JPA</id>
+  <sources>
+    <source>src/main/java/application.App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
