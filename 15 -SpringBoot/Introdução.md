@@ -140,6 +140,3 @@ Depois de criar o projeto básico, você pode começar a adicionar funcionalidad
 2. Conectar a um banco de dados com Spring Data JPA.
 
 3. Criar serviços e camadas de negócios usando Service e Repository.
-
-# Gerenciamento de Dependências
-
