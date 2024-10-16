@@ -63,7 +63,7 @@ public class BookController {
 
 ```
 
-- @PathVariable: Usada para capturar valores de variáveis na URL. É útil para obter parâmetros dinâmicos na rota.
+- **@PathVariable**: Usada para capturar valores de variáveis na URL. É útil para obter parâmetros dinâmicos na rota.
 
 ``` java
 
@@ -74,7 +74,7 @@ public Book getBookById(@PathVariable Long id) {
 
 ```
 
-- @RequestParam: Usada para capturar parâmetros da query string na URL. É útil para passar dados adicionais nas requisições GET.
+- **@RequestParam**: Usada para capturar parâmetros da query string na URL. É útil para passar dados adicionais nas requisições GET.
 
 ``` java
 
@@ -85,7 +85,7 @@ public List<Book> searchBooks(@RequestParam String title) {
 
 ```
 
-- @RequestBody:  Indica que o parâmetro do método deve ser vinculado ao corpo da requisição HTTP. É utilizado para deserializar objetos JSON enviados em requisições POST ou PUT.
+- **@RequestBody**:  Indica que o parâmetro do método deve ser vinculado ao corpo da requisição HTTP. É utilizado para deserializar objetos JSON enviados em requisições POST ou PUT.
 
 ``` java
 
@@ -96,9 +96,9 @@ public Book createBook(@RequestBody Book book) {
 
 ```
 
-- @ResponseBody:  Indica que o objeto retornado pelo método deve ser serializado diretamente para o corpo da resposta HTTP. Pode ser usado em métodos de controladores para APIs.
+- **@ResponseBody**:  Indica que o objeto retornado pelo método deve ser serializado diretamente para o corpo da resposta HTTP. Pode ser usado em métodos de controladores para APIs.
 
-- @ExceptionHandler: Usada para definir métodos que devem tratar exceções específicas lançadas por métodos do controlador. Permite a manipulação de erros de forma centralizada.
+- **@ExceptionHandler**: Usada para definir métodos que devem tratar exceções específicas lançadas por métodos do controlador. Permite a manipulação de erros de forma centralizada.
 
 ``` java
 

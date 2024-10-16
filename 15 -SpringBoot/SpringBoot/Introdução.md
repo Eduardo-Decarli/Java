@@ -20,22 +20,6 @@ O Spring pode ser configurado de duas maneiras
 
 - Anotations (Java Config): Anotações como **@Component, @Service, @Repository, @Controller** e **@Autowired** são amplamente usadas para configurar e gerenciar beans de forma mais moderna. Essa abordagem é mais moderna e é a mais usada no Spring Boot. Em vez de usar XML, você usa anotações nas suas classes para configurar o comportamento do Spring. A configuração baseada em anotações é geralmente mais concisa, fácil de manter e oferece mais controle em tempo de compilação.
 
-## Anotações Comuns do Spring
-
-- **@Component**: Marca uma classe como um bean gerenciado pelo Spring. A classe será registrada no container IoC.
-
-- **@Service**: Semelhante ao **@Component**, mas semanticamente indica que a classe está no nível de serviço.
-
-- **@Repository**: Indica que a classe é responsável pelo acesso a dados (DAO/repositório).
-
-- **@Controller**: Marca uma classe como um controlador para lidar com requisições HTTP (em uma aplicação web).
-
-- **@Autowired**: Indica que uma dependência deve ser injetada automaticamente pelo Spring
-
-- **@Configuration**: Indica que uma classe contém métodos que definem beans. Essa classe é usada para configurar o contexto da aplicação sem precisar de XML.
-
-- **@Bean**: É usado dentro de classes @Configuration para declarar beans manualmente
-
 ## Classe de Configurações Manuais
 
 Embora o Spring gerencie automaticamente muitos beans via anotações como @Service e @Repository, às vezes você pode querer definir beans manualmente em uma classe de configuração. Para isso, usamos @Configuration e @Bean.
@@ -131,12 +115,45 @@ pom.xml  (arquivo de configuração do Maven)
 
 ```
 
-#### Adicionando Funcionalidades
+## Principais Arquiteturas do SpringBoot
 
-Depois de criar o projeto básico, você pode começar a adicionar funcionalidades específicas, como:
+O Spring Boot é bastante flexível e suporta várias arquiteturas de projetos. Aqui estão algumas das arquiteturas mais comuns utilizadas com Spring Boot, junto com uma breve descrição e exemplos de quando usá-las.
 
-1. Criar um Controller para lidar com requisições HTTP.
+### Arquitetura em Camadas
 
-2. Conectar a um banco de dados com Spring Data JPA.
+Uma das abordagens mais tradicionais. A aplicação é dividida em camadas, onde cada camada tem uma responsabilidade específica. As camadas típicas são:
 
-3. Criar serviços e camadas de negócios usando Service e Repository.
+- Apresentação: Responsável pela interface com o usuário (controladores).
+
+- Serviços: Contém a lógica de negócios (serviços).
+
+- Persistência:  Interage com o banco de dados (repositórios).
+
+- Modelo: Define as entidades e suas relações
+
+Ideal para aplicações pequenas a médias, onde a separação clara de responsabilidades facilita a manutenção.
+
+``` txt
+
+├── com.example.demo
+    ├── controller
+    ├── service
+    ├── repository
+    ├── model
+
+```
+
+### Arquitetura Baseada em Microserviços
+
+A aplicação é dividida em serviços independentes que se comunicam entre si via APIs. Cada microserviço é responsável por uma funcionalidade específica e pode ser desenvolvido, implantado e escalado de forma independente.
+
+Ideal para aplicações grandes e complexas que precisam de escalabilidade e resiliência, permitindo que equipes trabalhem em diferentes serviços simultaneamente.
+
+``` txt
+
+├── user-service
+├── book-service
+├── loan-service
+├── api-gateway
+
+```
