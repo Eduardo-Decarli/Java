@@ -56,3 +56,24 @@ public class UserController {
 }
 
 ```
+
+- @Pattern(): É usada para validar se uma string corresponde a uma determinada expressão regular(regex). Isso garante que os valores dos campos sigam um formato especifico.
+
+    - regexp: Define a expressão regular, permitindo apenas caracteres dentro da expressão.
+
+    - message: Define a mensagem de erro que será exibida caso a validação venha a falhar.
+
+``` java
+
+import jakarta.validation.constraints.Pattern;
+
+public class User {
+
+    //Validação de email para aceitar o formato teste@gmail.com
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "Invalid email format")
+    private String email;
+
+    //Validação de CEP para aceitar 00000-000
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "Invalid postal code format")
+    private String postalCode;
+}
