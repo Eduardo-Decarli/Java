@@ -1,5 +1,17 @@
 # Anotações de Configuração
 
+O Spring Boot oferece um conjunto extenso de anotações para facilitar o desenvolvimento de aplicações, divididas em diferentes categorias com base nas funcionalidades que elas ativam ou configuram.
+
+(Core Configurations)[Core-Configuration]
+
+(Stereotype Annotations)[Stereotype-Annotations]
+
+(Web Annotations)[Spring-Web-Annotations]
+
+(Transaction Management)[Transaction-Management]
+
+## Core Configurations
+
 - **@SpringBootApplication**: Marca a classe principal da aplicação Spring Boot. É uma combinação de três anotações:
 
     - **@Component**: Informa que a classe é uma fonte de definições de beans para o Spring IoC container.
@@ -12,7 +24,7 @@
 
 - **@EnableAutoConfiguration**: Diz ao Spring Boot para configurar automaticamente a aplicação com base nas dependências do classpath. Usualmente está incluída na **@SpringBootApplication**.
 
-# Anotações de Componentes e Injeção de Dependência
+## Stereotype Annotations
 
 - **@Component**:  Define uma classe como um bean gerenciado pelo Spring, tornando-a elegível para ser injetada em outras partes da aplicação
 
@@ -22,11 +34,11 @@
 
 - **@Autowired**: Permite a injeção automática de dependências. O Spring tenta resolver e injetar o bean correspondente quando você usa essa anotação.
 
-# Anotações de Controle de Web (MVC)
-
 - **@Controller**: Indica que uma classe vai lidar com solicitações HTTP. É uma especialização de @Component, usada em controladores MVC no Spring.
 
 - **@RestController**: Combina @Controller e @ResponseBody. Indica que os métodos da classe retornarão dados diretamente no corpo da resposta (geralmente em formato JSON ou XML), em vez de redirecionar para uma view.
+
+## Spring Web Annotations
 
 - **@RequestMapping**: Define a URL que um método ou classe irá responder. Pode ser aplicada tanto a classes quanto a métodos.
 
@@ -70,7 +82,7 @@ public class BookController {
 @GetMapping("/{id}")
 public Book getBookById(@PathVariable Long id) {
     return bookService.findById(id);
-}
+} 
 
 ```
 
@@ -113,5 +125,6 @@ public class GlobalExceptionHandler {
 
 ```
 
-# Anotações de Manipulação de Dados
+## Transaction Management
 
+- @Transactional: Define que um método ou classe deve ser executado dentro de uma transação.
