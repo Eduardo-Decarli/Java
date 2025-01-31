@@ -44,3 +44,25 @@ Os arquivos .class gerados pelo javac contêm o bytecode do programa. Esses arqu
 ### 3. **Execução do ByteCode**
 
 Para executar o bytecode, você usa a Java Virtual Machine (JVM), que interpreta e executa o bytecode. O comando java é utilizado para iniciar a JVM e executar o programa.
+
+## Edições do java
+
+O java possui três principais edições, cada uma voltada para diferentes tipos de aplicações
+
+- Java SE (Standard Edition)
+
+É a edição básica do Java e fornece a API central necessária para desenvolver aplicações desktop, servidores simples e pequenas aplicações empresariais. Inclui bibliotecas fundamentais como Collections, Concurrency, Streams e JDBC (para acesso a bancos de dados)
+
+Exemplos de Uso: Aplicações desktop, ferramentas de linha de comando, aplicações embarcadas simples.
+
+- Java EE / Jakarta EE (Enterprise Edition)
+
+Focado no desenvolvimento de aplicações corporativas e distribuidas, oferecendo recursos como Servlets, JSP, EJB, JPA e WebSockets. Suporta desenvolvimento de aplicações web, APIs REST, integração com bancos de dados e transações distribuídas. Atualmente é mantido pela Eclipse Foundation e chamado de Jakarta EE.
+
+Exemplos de uso: Sistemas bancários, ERPs, Aplicações de grande escalas
+
+- Java ME (Micro Edition)
+
+Voltado para dispositivos embarcados e móveis com recursos limitados, como celulares antigos, smartwatches e sistemas embarcados. Contém um subconjunto da API do Java SE, adaptado para dispositivos com menos poder computacional
+
+Exemplo de uso: Sistemas embarcados, IoT, Jogos para celulares antigos.
