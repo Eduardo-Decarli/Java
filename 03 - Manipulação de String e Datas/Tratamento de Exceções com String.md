@@ -41,3 +41,55 @@ public class TesteNullPointer {
 }
 
 ```
+
+---
+
+- Evitando IndexOutOfBoundsException ao acessar caracteres
+
+``` Java
+
+public class TesteIndexOutOfBounds {
+    public static void main(String[] args) {
+        String texto = "Java";
+
+        try {
+            char letra = texto.charAt(10); // Índice inválido!
+            System.out.println(letra);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Erro: Índice fora do limite da String!");
+        }
+    }
+}
+
+```
+
+---
+
+- Evitando NumberFormatException ao converter Strings para números
+
+``` Java
+
+public class TesteNumberFormat {
+    public static void main(String[] args) {
+        String numeroTexto = "abc"; // Valor inválido!
+
+        try {
+            int numero = Integer.parseInt(numeroTexto);
+            System.out.println("Número convertido: " + numero);
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: String não pode ser convertida em número!");
+        }
+    }
+}
+
+```
+
+## Boas Práticas
+
+- Sempre verifique se a String não é null antes de acessar seus métodos.
+
+- Antes de acessar índices, use **if (indice < string.length())**.
+
+- Antes de converter para número, use **matches("\\d+")** para validar.
+
+- Capture exceções específicas (**NullPointerException**, **NumberFormatException**, etc.), ao invés de capturar Exception genérica.
