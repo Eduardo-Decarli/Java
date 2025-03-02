@@ -103,7 +103,7 @@ public class TesteTreeMapIteracao {
 
 ---
 
-- Trabalhando com submapas: O TreeMap permite pegar intervalos de chaves facilmente com os métodos subMap(), headMap() e tailMap().
+- **Trabalhando com submapas:** O TreeMap permite pegar intervalos de chaves facilmente com os métodos subMap(), headMap() e tailMap().
 
 ``` Java
 
